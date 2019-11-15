@@ -1,14 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Cadastrar pessoa na mesa</ion-title>
+    <ion-title>Escolha a mesa</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<!--vai ter que mostrar as mesas
+O ususário não vai poder deletar
+-->
 <ion-content>
-  <ion-button routerLink="/escolha" expand="block">
-    pág escolha de mesa
-  </ion-button>
-
   <ion-list *ngIf="!products.length">
     <ion-item *ngFor="let item of [0, 1, 2]">
       <ion-avatar slot="start">
@@ -26,12 +24,11 @@
         </p>
       </ion-label>
     </ion-item>
-
   </ion-list>
 
   <ion-list>
     <ion-item-sliding *ngFor="let product of products">
-      <ion-item button [routerLink]="['/details', product.id]">
+      <ion-item button [routerLink]="['/horario', product.id]">
         <ion-avatar slot="start">
           <img [src]="product.picture">
         </ion-avatar>
@@ -45,32 +42,7 @@
         <ion-note color="primary" slot="end" *ngIf="product.price">{{ product.price | currency: 'BRL' }}</ion-note>
       </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteProduct(product.id)">
-          <ion-icon slot="top" name="trash"></ion-icon>
-          Excluir
-        </ion-item-option>
-      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-button (click)="logout()" color="danger" expand="block">
-            Sair
-          </ion-button>
-        </ion-col>
-
-        <ion-col size="6">
-          <ion-button routerLink="/details" expand="block">
-            Add mesa
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
