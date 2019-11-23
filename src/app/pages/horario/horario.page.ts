@@ -40,4 +40,7 @@ export class HorarioPage implements OnInit {
     });
   }
 
+  reserve(id: string) {
+    this.productService.reserve(id);
+  }
 }

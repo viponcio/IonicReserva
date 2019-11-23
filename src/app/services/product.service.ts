@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Product } from '../interfaces/product';
 import { map } from 'rxjs/operators';
+import {error} from "util";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,13 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.productsCollection.doc(id).delete();
+  }
+
+  reserve(id: string) {
+    return this.productsCollection.doc(id).set({ isReserved: true }, { merge: true });
+  }
+
+  reserve(id: string, escolha: number) {
+    return this.productsCollection.doc(id).set({ horarios: {escolha} }, { merge: true });
   }
 }

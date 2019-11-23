@@ -6,4 +6,6 @@ export interface Product {
     price?: string;
     createdAt?: number;
     userId?: string;
+    isReserved?: boolean;
+    horarios?: Array<number>;
 }

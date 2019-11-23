@@ -14,12 +14,27 @@
       <ion-input>{{product.name}} </ion-input>
     </ion-item>
     <ion-item>
+      <ion-input>{{product.horarios[1]}} </ion-input>
+    </ion-item>
+
+    <ion-item *ngFor="let horario of product.horarios">
+      <p *ngIf=" tran.tranType == 'R'" > You have redeemed  {{tran.pointsRedeemed}} points.  </p>
+      <p *ngIf=" tran.tranType == 'E'" > You have earned  {{tran.pointsEarned}} points.  </p>
+    </ion-item>
+
+    <div ng-if="{{product.horarios[1]}}">
+      <h1>Welcome</h1>
+      <p>Welcome to my home.</p>
+      <hr>
+    </div>
+
+    <ion-item>
       <ion-label>Horario</ion-label>
       <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="">19:00-20:00</ion-select-option>
-        <ion-select-option value="">20:00-21:00</ion-select-option>
-        <ion-select-option value="">21:00-22:00</ion-select-option>
-        <ion-select-option value="">22:00-23:00</ion-select-option>
+        <ion-select-option value="1">19:00-20:00</ion-select-option>
+        <ion-select-option value="2">20:00-21:00</ion-select-option>
+        <ion-select-option value="3">21:00-22:00</ion-select-option>
+        <ion-select-option value="4">22:00-23:00</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -27,7 +42,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block">
+    <ion-button expand="block" (click)="reserve(this.productId)">
       Salvar Reserva
     </ion-button>
   </ion-toolbar>
